@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Blazor-GithubPages | 404</title>
+        <base href="/Blazor-GithubPages/" />
+        <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+
+        <style>
+            body {
+                position: relative;
+                width: 100%;
+                height: 100vh;
+                overflow: hidden;
+            }
+            .error-emoji-wrapper {
+                position: absolute;
+                top: 45%;
+                left: 50%;
+                text-align: center;
+                transform: translate(-50%, -50%);
+            }
+            #error-emoji {
+                font-size: 11rem;
+                color: rgba(0, 0, 0,.6);
+            }
+            .text span {
+                display: block;
+                width: 100%;
+                font-size: 1.8rem;
+                margin-top: 20px;
+            }
+            .text a {
+                font-size: 1.3rem;
+                text-decoration: none;
+                margin-top: 15px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="error-emoji-wrapper">
+            <span id="error-emoji"> _ </span>
+            <div class="text">
+                <span> Sorry, there's nothing at this address. </span>
+                <a href="index.html"> Back </a>
+            </div>
+        </div>
+    </body>
+
+    <script>
+        const element = document.getElementById('error-emoji');
+        const errorEmojis = ["(≥o≤)", "(^-^*)", "(>_<)", "(·.·)", "(˚Δ˚)b", "(o^^)o", "(;-;)", "\(o_o)/", "\(^Д^)/", "(='X'=)", "(^_^)b"];
+
+        element.innerHTML = errorEmojis[Math.floor(Math.random() * Math.floor(errorEmojis.length))];
+    </script>
+</html>
