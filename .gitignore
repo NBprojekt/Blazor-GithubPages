@@ -84,9 +84,6 @@ packages/
 node_modules
 .npmrc
 
-# Minified files
-**/*.min.*
-
 # Windows Azure Build Output
 csx/
 *.build.csdef
