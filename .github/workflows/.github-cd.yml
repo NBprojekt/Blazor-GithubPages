@@ -1,0 +1,42 @@
+  
+name: Github CD
+on: 
+  release:
+    types: 
+      - published
+
+jobs:
+  deploy:
+    name: Build and Deploy app to gh-pages
+    runs-on: ubuntu-latest
+        
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '3.1.x'
+
+      - name: Dotnet restore
+        env:
+          DOTNET_CLI_TELEMETRY_OPTOUT: true
+        run: dotnet restore
+
+      - name: Release Build
+        if: ${{ success() }}
+        run: dotnet build --no-restore --configuration Release
+
+      - name: Release Publish
+        if: ${{ success() }}
+        run: dotnet publish --configuration Release
+
+      - name: Deploy to Github Pages
+        uses: JamesIves/github-pages-deploy-action@releases/v3
+        with:
+          ACCESS_TOKEN: $GITHUB_TOKEN
+          BASE_BRANCH: master
+          BRANCH: gh-pages
+          FOLDER: Blazor-GithubPages/bin/Release/netstandard2.1/publish/wwwroot
+          SINGLE_COMMIT: true
